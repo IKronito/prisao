@@ -1,10 +1,8 @@
-package com.prisao.entities;
+package com.prisao.Main.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.prisao.entities.AgenteEntity.CargosAgente;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,7 +41,7 @@ public class PresoEntity {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="ComportamentoPreso")
-	private CargosAgente type;
+	private ComportamentoPreso type;
 	
 	@Column(name="comportamento")
 	private String comportamento;

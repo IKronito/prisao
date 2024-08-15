@@ -1,9 +1,4 @@
-package com.prisao.entities;
-
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.prisao.entities.AgenteEntity.CargosAgente;
+package com.prisao.Main.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

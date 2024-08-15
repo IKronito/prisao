@@ -1,9 +1,11 @@
-package com.prisao.entities;
+package com.prisao.Main.entities;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.prisao.Main.enums.CargosEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
 
 @Setter
 @Getter
@@ -41,14 +45,11 @@ public class AgenteEntity {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="CargosAgente")
-	private CargosAgente type;
+	private CargosEnum type;
 	
 	@Column(name="cargo")
 	private String cargo;
 	
-	public enum CargosAgente {
-	    Diretor,Subdiretor,Chefe,Supervisor,Oficial
-	}
 	
 	@OneToMany(mappedBy = "selas")
 	 private List<SelaEntity> selas;

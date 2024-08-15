@@ -1,12 +1,12 @@
-package com.prisao.services;
+package com.prisao.Main.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.prisao.entities.AgenteEntity;
-import com.prisao.repositories.AgenteRepository;
+import com.prisao.Main.entities.AgenteEntity;
+import com.prisao.Main.repositories.AgenteRepository;
 
 @Service
 public class AgenteService {
