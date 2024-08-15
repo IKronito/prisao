@@ -1,7 +1,6 @@
 package com.prisao.Main.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.prisao.Main.enums.CargosEnum;
@@ -13,14 +12,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 
 @Setter
 @Getter
@@ -49,9 +45,5 @@ public class AgenteEntity {
 	
 	@Column(name="cargo")
 	private String cargo;
-	
-	
-	@OneToMany(mappedBy = "selas")
-	 private List<SelaEntity> selas;
 	
 }

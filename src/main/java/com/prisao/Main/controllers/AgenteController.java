@@ -17,8 +17,8 @@ public class AgenteController {
     private AgenteService agenteService;
 
     @PostMapping("/saveagente")
-    public AgenteEntity saveAgente(@RequestBody AgenteEntity agenteEntity){
-        return agenteService.saveAgente(agenteEntity);
+    public AgenteEntity saveagente(@RequestBody AgenteEntity agenteEntity){
+        return agenteService.saveagente(agenteEntity);
     }
 
 }

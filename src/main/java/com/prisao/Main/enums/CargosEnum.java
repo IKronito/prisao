@@ -2,8 +2,9 @@ package com.prisao.Main.enums;
 
 public enum CargosEnum {
 	
-	CHEFE,
-	SUB_CHEFE,
-	sUPERVISOR
-
+	Chefe,
+	Sub_chefe,
+	Supervisor,
+	Oficial,
+	Guarda
 }

@@ -31,7 +31,7 @@ public class AgenteService {
 	}
 
 	//SalvarAgente
-	public AgenteEntity saveAgente(AgenteEntity agenteEntity) {
+	public AgenteEntity saveagente(AgenteEntity agenteEntity) {
 
 		return agenteRepository.save(agenteEntity);
 	}
