@@ -39,6 +39,9 @@ public class PresoEntity {
 	private String Crime;
 	private int setenca;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name="ComportamentoPreso")
+	private ComportamentoPreso type;
 	
 	@Column(name="comportamento")
 	private String comportamento;
