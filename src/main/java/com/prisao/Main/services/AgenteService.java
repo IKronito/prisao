@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.prisao.Main.entities.AgenteEntity;
+import com.prisao.Main.enums.CargosEnum;
 import com.prisao.Main.repositories.AgenteRepository;
 
 @Service
@@ -32,6 +33,15 @@ public class AgenteService {
 
 	//SalvarAgente
 	public AgenteEntity saveagente(AgenteEntity agenteEntity) {
+		if (agenteEntity.getCargo().equalsIgnoreCase(CargosEnum.Chefe.toString())
+				|| agenteEntity.getCargo().equalsIgnoreCase(CargosEnum.Sub_chefe.toString())
+				|| agenteEntity.getCargo().equalsIgnoreCase(CargosEnum.Oficial.toString())
+				|| agenteEntity.getCargo().equalsIgnoreCase(CargosEnum.Supervisor.toString())
+				) {
+			return agenteRepository.save(agenteEntity);
+		} else {
+			agenteEntity.setCargo(CargosEnum.Guarda.toString());
+		}
 
 		return agenteRepository.save(agenteEntity);
 	}

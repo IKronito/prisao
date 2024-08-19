@@ -1,8 +1,5 @@
 package com.prisao.Main.entities;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.prisao.Main.enums.CargosEnum;
 
 import jakarta.persistence.Column;
@@ -28,15 +25,14 @@ import lombok.Setter;
 public class AgenteEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
-	private String CPF;
-
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	private LocalDate dataNasc;
-
+	private String sobrenome;
+	
+	private String cpf;
+	
 	private String telefone;
 	
 	@Enumerated(EnumType.STRING)

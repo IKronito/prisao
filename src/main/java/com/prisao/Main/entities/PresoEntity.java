@@ -27,7 +27,7 @@ import lombok.Setter;
 public class PresoEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
@@ -39,9 +39,6 @@ public class PresoEntity {
 	private String Crime;
 	private int setenca;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="ComportamentoPreso")
-	private ComportamentoPreso type;
 	
 	@Column(name="comportamento")
 	private String comportamento;

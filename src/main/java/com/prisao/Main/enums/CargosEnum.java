@@ -6,5 +6,5 @@ public enum CargosEnum {
 	Sub_chefe,
 	Supervisor,
 	Oficial,
-	Guarda
+	Guarda 
 }
