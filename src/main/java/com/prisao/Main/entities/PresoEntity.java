@@ -33,10 +33,7 @@ public class PresoEntity {
 	private String nome;
 	private String CPF;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	private LocalDate dataNasc;
-	
-	private String Crime;
+	private String crime;
 	private int setenca;
 	
 	@Enumerated(EnumType.STRING)

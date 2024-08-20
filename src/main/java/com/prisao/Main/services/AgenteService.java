@@ -52,6 +52,21 @@ public class AgenteService {
 		agenteRepository.delete(agente);
 	}
 	
-	
+	public void deleteAgenteById(Long id) {
+        AgenteEntity agente = findById(id);
+        agenteRepository.delete(agente);
+    }
 
+	public AgenteEntity updateAgente(Long id, AgenteEntity updateAgente) {
+        AgenteEntity agenteExistente = findById(id);
+
+        // Atualizar dados de agente
+        agenteExistente.setNome(updateAgente.getNome());
+        agenteExistente.setSobrenome(updateAgente.getSobrenome());
+        agenteExistente.setTelefone(updateAgente.getTelefone());
+        agenteExistente.setCargo(updateAgente.getCargo());
+        agenteExistente.setCpf(updateAgente.getCpf());
+       
+        return agenteRepository.save(agenteExistente);
+    }
 }
