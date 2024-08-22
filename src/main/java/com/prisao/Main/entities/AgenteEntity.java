@@ -1,5 +1,7 @@
 package com.prisao.Main.entities;
 
+import java.util.List;
+
 import com.prisao.Main.enums.CargosEnum;
 
 import jakarta.persistence.Column;
@@ -9,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,17 +33,20 @@ public class AgenteEntity {
 	private Long id;
 
 	private String nome;
-	private String sobrenome;
+	private String dataNasc;
 	
 	private String cpf;
 	
 	private String telefone;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="CargosAgente")
 	private CargosEnum type;
 	
 	@Column(name="cargo")
 	private String cargo;
+	
+	 @ManyToMany(mappedBy = "agentes")
+	 private List<PresoEntity> presos;
+	
 	
 }

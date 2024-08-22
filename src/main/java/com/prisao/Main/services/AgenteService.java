@@ -62,11 +62,22 @@ public class AgenteService {
 
         // Atualizar dados de agente
         agenteExistente.setNome(updateAgente.getNome());
-        agenteExistente.setSobrenome(updateAgente.getSobrenome());
+        agenteExistente.setDataNasc(updateAgente.getDataNasc());
         agenteExistente.setTelefone(updateAgente.getTelefone());
         agenteExistente.setCargo(updateAgente.getCargo());
         agenteExistente.setCpf(updateAgente.getCpf());
        
+        
+		if (agenteExistente.getCargo().equalsIgnoreCase(CargosEnum.Chefe.toString())
+				|| agenteExistente.getCargo().equalsIgnoreCase(CargosEnum.Sub_chefe.toString())
+				|| agenteExistente.getCargo().equalsIgnoreCase(CargosEnum.Oficial.toString())
+				|| agenteExistente.getCargo().equalsIgnoreCase(CargosEnum.Supervisor.toString())
+				) {
+			return agenteRepository.save(agenteExistente);
+		} else {
+			agenteExistente.setCargo(CargosEnum.Guarda.toString());
+		}
+        
         return agenteRepository.save(agenteExistente);
     }
 }
