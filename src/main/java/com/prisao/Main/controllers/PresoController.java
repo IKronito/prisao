@@ -23,11 +23,22 @@ public class PresoController {
 	    @Autowired
 	    private PresoService presoService;
 
-	    @PostMapping("salvar")
+	    @PostMapping("/salvar")
 	    public PresoEntity savepreso(@RequestBody PresoEntity presoEntity){
 	        return presoService.savepreso(presoEntity);
 	    }
 
+	    @DeleteMapping("/delete/all")
+	    public ResponseEntity<Void> deleteAll() {
+	        try {
+	            presoService.deleteAllPresos();
+	            return ResponseEntity.noContent().build();
+	        } catch (Exception e) {
+	            System.err.println(e.getCause());
+	            return ResponseEntity.badRequest().build();
+	        }
+	    }
+	    
 	    @GetMapping("findbyid/{id}")
 	    public ResponseEntity<PresoEntity> findById(@PathVariable Long id){
 	       try {

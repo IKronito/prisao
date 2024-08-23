@@ -8,7 +8,7 @@ import com.prisao.Main.entities.PresoEntity;
 
 public interface PresoRepository extends JpaRepository<PresoEntity,Long> {
 
-	 //List<PresoEntity> findByPreso(String preso);
+	//List<PresoEntity> findByPreso(String preso);
 
 	   // @Query(value = "select count(id) from veiculos where marca=?", nativeQuery = true)
 	   // int totalMarcas(String marca);

@@ -14,7 +14,6 @@ public class PresoService {
 
 	@Autowired
 	private PresoRepository presoRepository;
-	private String dataNasc;
 
 	// Encontrar por ID
 	public PresoEntity findById(Long Id) {
@@ -22,7 +21,8 @@ public class PresoService {
 		try {
 			return presoRepository.findById(Id).orElseThrow();
 		} catch (Exception e) {
-			return new PresoEntity();
+			System.out.println(e.getCause());
+			return null;
 		}
 
 	}
@@ -30,6 +30,13 @@ public class PresoService {
 	// Encontrar Todos os Presos
 	public List<PresoEntity> findAll() {
 		return presoRepository.findAll();
+	}
+
+	// Deletar Todos os Presos
+	public void deleteAllPresos() {
+		List<PresoEntity> presos = presoRepository.findAll();
+
+		presoRepository.deleteAll();
 	}
 
 	// Salvar Preso
@@ -67,12 +74,14 @@ public class PresoService {
 	public PresoEntity updatePreso(Long id, PresoEntity updatePreso) {
 		PresoEntity presoExistente = findById(id);
 
-		// Atualizar dados de agente
+		// Atualizar dados de preso
 		presoExistente.setNome(updatePreso.getNome());
 		presoExistente.setComportamento(updatePreso.getComportamento());
 		presoExistente.setDataNasc(updatePreso.getDataNasc());
 		presoExistente.setSentenca(updatePreso.getSentenca());
 		presoExistente.setCpf(updatePreso.getCpf());
+		presoExistente.setCrime(updatePreso.getCrime());
+
 
 		if (presoExistente.getComportamento().equalsIgnoreCase(ComportamentoEnum.Muito_Bom.toString())
 				|| presoExistente.getComportamento().equalsIgnoreCase(ComportamentoEnum.Bom.toString())
