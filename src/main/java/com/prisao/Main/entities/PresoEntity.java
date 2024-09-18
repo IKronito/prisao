@@ -1,9 +1,11 @@
 package com.prisao.Main.entities;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.prisao.Main.enums.ComportamentoEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,25 +32,20 @@ public class PresoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
-	private String CPF;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	private LocalDate dataNasc;
-	
-	private String Crime;
-	private int setenca;
-	
+	private String cpf;
+	private String dataNasc;
+
+	private String crime;
+	private String sentenca;
+
 	@Enumerated(EnumType.STRING)
-	@Column(name="ComportamentoPreso")
-	private ComportamentoPreso type;
-	
-	@Column(name="comportamento")
+	private ComportamentoEnum type;
+
+	@Column(name = "comportamento")
 	private String comportamento;
-	
-	public enum ComportamentoPreso {
-	   Bom,Mediano,Ruim
-	}
-	
+
+	@ManyToMany(mappedBy = "presos")
+	private List<AgenteEntity> agentes = new ArrayList<>();
 }
