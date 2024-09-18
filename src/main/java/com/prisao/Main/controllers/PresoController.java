@@ -1,85 +1,50 @@
 package com.prisao.Main.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.prisao.Main.entities.PresoEntity;
 import com.prisao.Main.services.PresoService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/preso")
 public class PresoController {
 
-	    @Autowired
-	    private PresoService presoService;
+	@Autowired
+	private PresoService presoService;
 
-	    @PostMapping("/salvar")
-	    public PresoEntity savepreso(@RequestBody PresoEntity presoEntity){
-	        return presoService.savepreso(presoEntity);
-	    }
+	@PostMapping("/salvar")
+	public ResponseEntity<PresoEntity> savePreso(@RequestBody PresoEntity presoEntity) {
+		return ResponseEntity.ok(presoService.savePreso(presoEntity));
+	}
 
-	    @DeleteMapping("/delete/all")
-	    public ResponseEntity<Void> deleteAll() {
-	        try {
-	            presoService.deleteAllPresos();
-	            return ResponseEntity.noContent().build();
-	        } catch (Exception e) {
-	            System.err.println(e.getCause());
-	            return ResponseEntity.badRequest().build();
-	        }
-	    }
-	    
-	    @GetMapping("findbyid/{id}")
-	    public ResponseEntity<PresoEntity> findById(@PathVariable Long id){
-	       try {
-	    	   return ResponseEntity.ok(presoService.findById(id));
-	       }catch (Exception e) {
-	    	   System.err.println(e.getCause());
-	    	   return ResponseEntity.badRequest().build();
-	       }
-	    }
-	    //e
-	    @GetMapping("/findAll")
-	    public ResponseEntity<List<PresoEntity>> findAll(){
-	       try {
-	    	   return ResponseEntity.ok(presoService.findAll());
-	       }catch (Exception e) {
-	    	   return ResponseEntity.badRequest().build();
-	       }
-	    }
-	    //Deletar1
-	    @DeleteMapping("/delete/{id}")
-	    public ResponseEntity<List<PresoEntity>> deleteById(@PathVariable Long id) {
-	       try {
-	           presoService.deletePresoById(id);
-	       
-	           List<PresoEntity> presos = presoService.findAll();
-	           return ResponseEntity.ok(presos);
-	       } catch (Exception e) {
-	           System.err.println(e.getCause());
-	           return ResponseEntity.badRequest().build();
-	       }
-	    }
-	    
-	    @PutMapping("/update/{id}")
-	    public ResponseEntity<PresoEntity> updatePreso(@PathVariable Long id, @RequestBody PresoEntity updatePreso) {
-	        try {
-	            PresoEntity updateEntity = presoService.updatePreso(id, updatePreso);
-	            return ResponseEntity.ok(updateEntity);
-	        } catch (Exception e) {
-	            System.err.println(e.getCause());
-	            return ResponseEntity.badRequest().build();
-	        }
-	    }
-	
+	@GetMapping("/todos")
+	public ResponseEntity<List<PresoEntity>> findAllPresos() {
+		return ResponseEntity.ok(presoService.findAllPresos());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<PresoEntity> findByIdPreso(@PathVariable Long id) {
+		return ResponseEntity.ok(presoService.findByIdPreso(id));
+	}
+
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<PresoEntity> updatePreso(@PathVariable Long id, @RequestBody PresoEntity presoEntity) {
+		return ResponseEntity.ok(presoService.updatePreso(id, presoEntity));
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<Void> deletePreso(@PathVariable Long id) {
+		presoService.deletePreso(id);
+		return ResponseEntity.noContent().build();
+	}
+
+	@DeleteMapping("/deletarTodos")
+	public ResponseEntity<Void> deleteAllPresos() {
+		presoService.deleteAllPresos();
+		return ResponseEntity.noContent().build();
+	}
 }

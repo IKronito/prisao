@@ -1,21 +1,13 @@
 package com.prisao.Main.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.prisao.Main.entities.AgenteEntity;
-import com.prisao.Main.repositories.AgenteRepository;
 import com.prisao.Main.services.AgenteService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/agente")
@@ -24,76 +16,40 @@ public class AgenteController {
 	@Autowired
 	private AgenteService agenteService;
 
-	@Autowired
-	private AgenteRepository agenteRepository;
-
 	@PostMapping("/salvar")
-	public AgenteEntity saveagente(@RequestBody AgenteEntity agenteEntity) {
-		return agenteService.saveAgente(agenteEntity);
+	public ResponseEntity<AgenteEntity> saveAgente(@RequestBody AgenteEntity agenteEntity) {
+		return ResponseEntity.ok(agenteService.saveAgente(agenteEntity));
 	}
 
-	@GetMapping("findbyid/{id}")
-	public ResponseEntity<AgenteEntity> findById(@PathVariable Long id) {
-		try {
-			return ResponseEntity.ok(agenteService.findById(id));
-		} catch (Exception e) {
-			System.err.println(e.getCause());
-			return ResponseEntity.badRequest().build();
-		}
+	@GetMapping("/todos")
+	public ResponseEntity<List<AgenteEntity>> findAllAgentes() {
+		return ResponseEntity.ok(agenteService.findAllAgentes());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<AgenteEntity> findByIdAgente(@PathVariable Long id) {
+		return ResponseEntity.ok(agenteService.findByIdAgente(id));
 	}
 
 	@GetMapping("/cargo/{cargo}")
-	public List<AgenteEntity> findByCargo(@PathVariable String cargo) {
-		return agenteService.findByCargo(cargo);
+	public ResponseEntity<List<AgenteEntity>> findByCargoAgente(@PathVariable String cargo) {
+		return ResponseEntity.ok(agenteService.findByCargoAgente(cargo));
 	}
 
-	// e
-	@GetMapping("/findAll")
-	public ResponseEntity<List<AgenteEntity>> findAll() {
-		try {
-			return ResponseEntity.ok(agenteService.findAll());
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<AgenteEntity> updateAgente(@PathVariable Long id, @RequestBody AgenteEntity agenteEntity) {
+		return ResponseEntity.ok(agenteService.updateAgente(id, agenteEntity));
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<List<AgenteEntity>> deleteById(@PathVariable Long id) {
-		try {
-			agenteService.deleteAgente(id);
-
-			List<AgenteEntity> agentes = agenteService.findAll();
-			return ResponseEntity.ok(agentes);
-		} catch (Exception e) {
-			System.err.println(e.getCause());
-			return ResponseEntity.badRequest().build();
-		}
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<Void> deleteAgente(@PathVariable Long id) {
+		agenteService.deleteAgente(id);
+		return ResponseEntity.noContent().build();
 	}
 
-	@DeleteMapping("/delete/all")
-    public ResponseEntity<Void> deleteAll() {
-        try {
-            agenteService.deleteAllAgentes();
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            System.err.println(e.getCause());
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-	@GetMapping("/count/{cargo}")
-	public int countCargo(@PathVariable String cargo) {
-		return agenteService.countCargo(cargo);
-	}
-
-	@PutMapping("/update/{id}")
-	public ResponseEntity<AgenteEntity> updateAgente(@PathVariable Long id, @RequestBody AgenteEntity updateAgente) {
-		try {
-			AgenteEntity updateEntity = agenteService.updateAgente(id, updateAgente);
-			return ResponseEntity.ok(updateEntity);
-		} catch (Exception e) {
-			System.err.println(e.getCause());
-			return ResponseEntity.badRequest().build();
-		}
+	@DeleteMapping("/deletarTodos")
+	public ResponseEntity<Void> deleteAllAgentes() {
+		agenteService.deleteAllAgentes();
+		return ResponseEntity.noContent().build();
 	}
 }
