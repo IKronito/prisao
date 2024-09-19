@@ -5,16 +5,7 @@ import java.util.List;
 
 import com.prisao.Main.enums.ComportamentoEnum;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +15,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-@Entity(name = "preso")
-
+@Entity
+@Table(name = "preso")
 public class PresoEntity {
 
 	@Id
@@ -36,7 +26,6 @@ public class PresoEntity {
 	private String nome;
 	private String cpf;
 	private String dataNasc;
-
 	private String crime;
 	private String sentenca;
 
@@ -46,6 +35,7 @@ public class PresoEntity {
 	@Column(name = "comportamento")
 	private String comportamento;
 
-	@ManyToMany(mappedBy = "presos")
-	private List<AgenteEntity> agentes = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "cela_id")
+	private CelaEntity cela;
 }

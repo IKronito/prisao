@@ -23,15 +23,19 @@ public class PresoService {
 	}
 
 	public PresoEntity findByIdPreso(Long id) {
-		return presoRepository.findById(id).orElseThrow(() -> new RuntimeException("Preso não encontrado"));
+		return presoRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Preso não encontrado"));
 	}
 
 	public PresoEntity updatePreso(Long id, PresoEntity presoEntity) {
 		PresoEntity existingPreso = findByIdPreso(id);
 		existingPreso.setNome(presoEntity.getNome());
 		existingPreso.setCpf(presoEntity.getCpf());
+		existingPreso.setDataNasc(presoEntity.getDataNasc());
 		existingPreso.setCrime(presoEntity.getCrime());
 		existingPreso.setSentenca(presoEntity.getSentenca());
+		existingPreso.setComportamento(presoEntity.getComportamento());
+		existingPreso.setCela(presoEntity.getCela()); // Atualizar a cela se necessário
 		return presoRepository.save(existingPreso);
 	}
 
@@ -43,3 +47,4 @@ public class PresoService {
 		presoRepository.deleteAll();
 	}
 }
+

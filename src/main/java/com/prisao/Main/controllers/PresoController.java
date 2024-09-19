@@ -36,6 +36,7 @@ public class PresoController {
 		return ResponseEntity.ok(presoService.updatePreso(id, presoEntity));
 	}
 
+
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<Void> deletePreso(@PathVariable Long id) {
 		presoService.deletePreso(id);
