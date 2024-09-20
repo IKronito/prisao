@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.prisao.Main.entities.CelaEntity;
 import com.prisao.Main.repositories.CelaRepository;
+
 import java.util.List;
 
 @Service

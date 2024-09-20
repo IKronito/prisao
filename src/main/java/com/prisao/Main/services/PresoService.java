@@ -2,10 +2,8 @@ package com.prisao.Main.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.prisao.Main.entities.PresoEntity;
 import com.prisao.Main.repositories.PresoRepository;
-
 import java.util.List;
 
 @Service
@@ -47,4 +45,3 @@ public class PresoService {
 		presoRepository.deleteAll();
 	}
 }
-

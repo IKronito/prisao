@@ -3,8 +3,12 @@ package com.prisao.Main.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.prisao.Main.entities.CelaEntity;
+import com.prisao.Main.entities.PresoEntity;
 import com.prisao.Main.services.CelaService;
+import com.prisao.Main.services.PresoService;
+
 import java.util.List;
 
 @RestController
@@ -13,6 +17,9 @@ public class CelaController {
 
     @Autowired
     private CelaService celaService;
+
+    @Autowired
+    private PresoService presoService;  // Adicione o PresoService aqui
 
     @PostMapping("/salvar")
     public ResponseEntity<CelaEntity> saveCela(@RequestBody CelaEntity celaEntity) {

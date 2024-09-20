@@ -1,13 +1,15 @@
 package com.prisao.Main.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -26,11 +28,7 @@ public class CelaEntity {
     private int capacidade;
     private String localizacao;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "cela_presos",
-            joinColumns = @JoinColumn(name = "cela_id"),
-            inverseJoinColumns = @JoinColumn(name = "preso_id")
-    )
+    @OneToMany(mappedBy = "cela", cascade = CascadeType.ALL)
+    @JsonManagedReference // Prevê a serialização da lista de presos
     private List<PresoEntity> presos = new ArrayList<>();
 }

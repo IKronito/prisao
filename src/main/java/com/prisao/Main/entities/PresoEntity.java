@@ -1,8 +1,6 @@
 package com.prisao.Main.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.prisao.Main.enums.ComportamentoEnum;
 
 import jakarta.persistence.*;
@@ -37,5 +35,6 @@ public class PresoEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "cela_id")
+	@JsonBackReference
 	private CelaEntity cela;
 }
