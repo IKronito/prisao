@@ -1,7 +1,6 @@
 package com.prisao.Main.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +28,6 @@ public class CelaEntity {
     private String localizacao;
 
     @OneToMany(mappedBy = "cela", cascade = CascadeType.ALL)
-    @JsonManagedReference // Prevê a serialização da lista de presos
+    @JsonManagedReference // Para evitar problemas de recursão com Jackson
     private List<PresoEntity> presos = new ArrayList<>();
 }

@@ -19,7 +19,7 @@ public class CelaController {
     private CelaService celaService;
 
     @Autowired
-    private PresoService presoService;  // Adicione o PresoService aqui
+    private PresoService presoService;
 
     @PostMapping("/salvar")
     public ResponseEntity<CelaEntity> saveCela(@RequestBody CelaEntity celaEntity) {

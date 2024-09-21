@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.prisao.Main.entities.PresoEntity;
-import com.prisao.Main.entities.CelaEntity;  // Certifique-se de que está importando a CelaEntity
+import com.prisao.Main.entities.CelaEntity;
 import com.prisao.Main.services.PresoService;
-import com.prisao.Main.services.CelaService;  // Adicione o import do CelaService
+import com.prisao.Main.services.CelaService;
 
 import java.util.List;
 
@@ -19,14 +19,12 @@ public class PresoController {
 	private PresoService presoService;
 
 	@Autowired
-	private CelaService celaService;  // Adicione o CelaService aqui
+	private CelaService celaService;
 
 	@PostMapping("/salvar")
 	public ResponseEntity<PresoEntity> savePreso(@RequestBody PresoEntity presoEntity) {
-		// Se precisar vincular o preso à cela, faça isso aqui
-		CelaEntity cela = celaService.findByIdCela(presoEntity.getCela().getId());  // Busque a cela associada
-		presoEntity.setCela(cela);  // Atribua a cela ao preso
-
+		CelaEntity cela = celaService.findByIdCela(presoEntity.getCela().getId());
+		presoEntity.setCela(cela);
 		return ResponseEntity.ok(presoService.savePreso(presoEntity));
 	}
 
