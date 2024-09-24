@@ -28,13 +28,15 @@ public class CelaService {
 
     public CelaEntity updateCela(Long id, CelaEntity celaEntity) {
         CelaEntity existingCela = findByIdCela(id);
+
         existingCela.setNumero(celaEntity.getNumero());
         existingCela.setDescricao(celaEntity.getDescricao());
         existingCela.setCapacidade(celaEntity.getCapacidade());
         existingCela.setLocalizacao(celaEntity.getLocalizacao());
-        existingCela.setPresos(celaEntity.getPresos());
+
         return celaRepository.save(existingCela);
     }
+
 
     public void deleteCela(Long id) {
         celaRepository.deleteById(id);

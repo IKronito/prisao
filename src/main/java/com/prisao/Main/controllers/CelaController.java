@@ -5,9 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.prisao.Main.entities.CelaEntity;
-import com.prisao.Main.entities.PresoEntity;
 import com.prisao.Main.services.CelaService;
-import com.prisao.Main.services.PresoService;
 
 import java.util.List;
 
@@ -17,9 +15,6 @@ public class CelaController {
 
     @Autowired
     private CelaService celaService;
-
-    @Autowired
-    private PresoService presoService;
 
     @PostMapping("/salvar")
     public ResponseEntity<CelaEntity> saveCela(@RequestBody CelaEntity celaEntity) {

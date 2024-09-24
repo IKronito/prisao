@@ -28,6 +28,6 @@ public class CelaEntity {
     private String localizacao;
 
     @OneToMany(mappedBy = "cela", cascade = CascadeType.ALL)
-    @JsonManagedReference // Para evitar problemas de recursão com Jackson
+    @JsonManagedReference
     private List<PresoEntity> presos = new ArrayList<>();
 }

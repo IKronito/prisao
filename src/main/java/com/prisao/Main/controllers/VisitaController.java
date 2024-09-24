@@ -23,9 +23,15 @@ public class VisitaController {
     @PostMapping("/salvar")
     public ResponseEntity<VisitaEntity> saveVisita(@RequestBody VisitaEntity visitaEntity) {
         PresoEntity preso = presoService.findByIdPreso(visitaEntity.getPreso().getId());
+
+        if (preso == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
         visitaEntity.setPreso(preso);
         return ResponseEntity.ok(visitaService.saveVisita(visitaEntity));
     }
+
 
     @GetMapping("/todos")
     public ResponseEntity<List<VisitaEntity>> findAllVisitas() {
