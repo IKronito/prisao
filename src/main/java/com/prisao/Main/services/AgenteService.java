@@ -46,4 +46,12 @@ public class AgenteService {
 	public void deleteAllAgentes() {
 		agenteRepository.deleteAll();
 	}
+
+	public AgenteEntity findAgenteById(long id) {
+		return findByIdAgente(id);
+	}
+
+	public AgenteEntity createAgente(AgenteEntity agente) {
+		return saveAgente(agente);
+	}
 }

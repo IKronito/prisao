@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.prisao.Main.enums.ComportamentoEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,12 +27,22 @@ public class PresoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank(message = "Nome não pode estar em branco")
 	private String nome;
+
+	@NotBlank(message = "CPF não pode estar em branco")
 	private String cpf;
+
+	@NotBlank(message = "Data de nascimento não pode estar em branco")
 	private String dataNasc;
+
+	@NotBlank(message = "Crime não pode estar em branco")
 	private String crime;
+
+	@NotBlank(message = "Sentença não pode estar em branco")
 	private String sentenca;
 
+	@NotNull(message = "Comportamento não pode ser nulo")
 	@Enumerated(EnumType.STRING)
 	private ComportamentoEnum comportamento;
 

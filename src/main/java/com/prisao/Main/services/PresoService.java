@@ -33,7 +33,7 @@ public class PresoService {
 		existingPreso.setCrime(presoEntity.getCrime());
 		existingPreso.setSentenca(presoEntity.getSentenca());
 		existingPreso.setComportamento(presoEntity.getComportamento());
-		existingPreso.setCela(presoEntity.getCela()); // Atualizar a cela se necessário
+		existingPreso.setCela(presoEntity.getCela());
 		return presoRepository.save(existingPreso);
 	}
 
