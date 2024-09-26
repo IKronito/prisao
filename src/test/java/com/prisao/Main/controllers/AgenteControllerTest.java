@@ -30,7 +30,7 @@ public class AgenteControllerTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        // Ajuste a instância conforme o construtor da sua classe AgenteEntity
+        
         agente = new AgenteEntity(1L, "Nome Agente", "Cargo Agente", "Departamento", "Contato", "Endereço", Collections.emptyList());
     }
 
