@@ -43,7 +43,7 @@ public class PresoControllerTest {
 
     @Test
     public void testSavePreso() {
-        when(celaService.findByIdCela(any(Long.class))).thenReturn(preso.getCela()); // Simula que a cela existe
+        when(celaService.findByIdCela(any(Long.class))).thenReturn(preso.getCela()); 
         when(presoService.savePreso(any(PresoEntity.class))).thenReturn(preso);
 
         ResponseEntity<PresoEntity> response = presoController.savePreso(preso);
