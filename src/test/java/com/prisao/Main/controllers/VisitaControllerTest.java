@@ -44,7 +44,7 @@ public class VisitaControllerTest {
 
     @Test
     public void testSaveVisita() {
-        when(presoService.findByIdPreso(any(Long.class))).thenReturn(visita.getPreso()); // Simula que o preso existe
+        when(presoService.findByIdPreso(any(Long.class))).thenReturn(visita.getPreso()); 
         when(visitaService.saveVisita(any(VisitaEntity.class))).thenReturn(visita);
 
         ResponseEntity<VisitaEntity> response = visitaController.saveVisita(visita);
